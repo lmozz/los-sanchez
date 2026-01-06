@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta property="og:title" content="🌮 Cuenta Compartida - Foodie Party">
+    <meta property="og:description" content="Detalle final de la cuenta: 9 personas. ¡Toca tu nombre para ver el desglose!">
+    <meta property="og:type" content="website">
+
+    <title>Cuenta Compartida Interactiva</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass: rgba(255, 255, 255, 0.98);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        h2 { text-align: center; color: var(--primary); margin-bottom: 5px; }
+        .subtitle { text-align: center; font-size: 0.85rem; color: #64748b; margin-bottom: 25px; }
+
+        /* Tarjetas de Personas */
+        .row {
+            background: white;
+            margin-bottom: 12px;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+            cursor: pointer;
+        }
+
+        .row-header {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .name-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .arrow {
+            font-size: 0.7rem;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .row.active .arrow { transform: rotate(180deg); }
+
+        .price-tag { font-weight: 600; color: var(--primary); }
+
+        /* Detalles Expandibles */
+        .details {
+            max-height: 0;
+            padding: 0 20px;
+            background: #f8fafc;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            font-size: 0.85rem;
+        }
+
+        .row.active .details {
+            max-height: 250px;
+            padding: 15px 20px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            color: #475569;
+        }
+
+        .detail-item strong { color: #1e293b; }
+
+        /* Total Final */
+        .footer-total {
+            margin-top: 25px;
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🍽️ Cuenta Compartida</h2>
+    <p class="subtitle">(En móvil, toca un nombre para ver el detalle)</p>
+
+    <div id="list">
+        <div class="row" onclick="toggleRow(this)">
+            <div class="row-header">
+                <div class="name-wrapper"><span class="arrow">▼</span> Arce</div>
+                <span class="price-tag">$12.98</span>
+            </div>
+            <div class="details">
+                <div class="detail-item"><span>🍴 Embarazado Pastor</span> <span>$7.99</span></div>
+                <div class="detail-item"><span>🥤 Tamarindo</span> <span>$2.25</span></div>
+                <div class="detail-item"><span>🎂 Cumpleañera</span> <span>$1.50</span></div>
+                <div class="detail-item"><span>🪙 Propina</span> <span>$1.24</span></div>
+            </div>
+        </div>
+
+        <div class="row" onclick="toggleRow(this)">
+            <div class="row-header">
+                <div class="name-wrapper"><span class="arrow">▼</span> Marvin</div>
+                <span class="price-tag">$12.98</span>
+            </div>
+            <div class="details">
+                <div class="detail-item"><span>🍴 Quesudo de Birria</span> <span>$7.99</span></div>
+                <div class="detail-item"><span>🥤 Coca</span> <span>$2.25</span></div>
+                <div class="detail-item"><span>🎂 Cumpleañera</span> <span>$1.50</span></div>
+                <div class="detail-item"><span>🪙 Propina</span> <span>$1.24</span></div>
+            </div>
+        </div>
+
+        <div class="row" onclick="toggleRow(this)">
+            <div class="row-header">
+                <div class="name-wrapper"><span class="arrow">▼</span> Moz</div>
+                <span class="price-tag">$14.73</span>
+            </div>
+            <div class="details">
+                <div class="detail-item"><span>🍴 Flauta Res</span> <span>$9.74</span></div>
+                <div class="detail-item"><span>🥤 Coca</span> <span>$2.25</span></div>
+                <div class="detail-item"><span>🎂 Cumpleañera</span> <span>$1.50</span></div>
+                <div class="detail-item"><span>🪙 Propina</span> <span>$1.24</span></div>
+            </div>
+        </div>
+
+        <div class="row" onclick="toggleRow(this)">
+            <div class="row-header">
+                <div class="name-wrapper"><span class="arrow">▼</span> Valeria</div>
+                <span class="price-tag">$14.73</span>
+            </div>
+            <div class="details">
+                <div class="detail-item"><span>🍴 Flauta Mixta</span> <span>$9.74</span></div>
+                <div class="detail-item"><span>🥤 Coca</span> <span>$2.25</span></div>
+                <div class="detail-item"><span>🎂 Cumpleañera</span> <span>$1.50</span></div>
+                <div class="detail-item"><span>🪙 Propina</span> <span>$1.24</span></div>
+            </div>
+        </div>
+
+        <div class="row" onclick="toggleRow(this)">
+            <div class="row-header">
+                <div class="name-wrapper"><span class="arrow">▼</span> Miguel</div>
+                <span class="price-tag">$13.98</span>
+            </div>
+            <div class="details">
+                <div class="detail-item"><span>🍴 Burrito Quesudo Birria</span> <span>$8.99</span></div>
+                <div class="detail-item"><span>🥤 Limonada Natural</span> <span>$2.25</span></div>
+                <div class="detail-item"><span>🎂 Cumpleañera</span> <span>$1.50</span></div>
+                <div class="detail-item"><span>🪙 Propina</span> <span>$1.24</span></div>
+            </div>
+        </div>
+
+        <div class="row" onclick="toggleRow(this)">
+            <div class="row-header">
+                <div class="name-wrapper"><span class="arrow">▼</span> Velasco</div>
+                <span class="price-tag">$12.98</span>
+            </div>
+            <div class="details">
+                <div class="detail-item"><span>🍴 Torta Quesuda Carnitas</span> <span>$7.99</span></div>
+                <div class="detail-item"><span>🥤 Tamarindo</span> <span>$2.25</span></div>
+                <div class="detail-item"><span>🎂 Cumpleañera</span> <span>$1.50</span></div>
+                <div class="detail-item"><span>🪙 Propina</span> <span>$1.24</span></div>
+            </div>
+        </div>
+
+        <div class="row" onclick="toggleRow(this)">
+            <div class="row-header">
+                <div class="name-wrapper"><span class="arrow">▼</span> Diego</div>
+                <span class="price-tag">$13.72</span>
+            </div>
+            <div class="details">
+                <div class="detail-item"><span>🍴 Quesudo de Res</span> <span>$7.99</span></div>
+                <div class="detail-item"><span>🥤 Limonada Fresa</span> <span>$2.99</span></div>
+                <div class="detail-item"><span>🎂 Cumpleañera</span> <span>$1.50</span></div>
+                <div class="detail-item"><span>🪙 Propina</span> <span>$1.24</span></div>
+            </div>
+        </div>
+
+        <div class="row" onclick="toggleRow(this)">
+            <div class="row-header">
+                <div class="name-wrapper"><span class="arrow">▼</span> Kelvin</div>
+                <span class="price-tag">$14.73</span>
+            </div>
+            <div class="details">
+                <div class="detail-item"><span>🍴 Embarazado Pastor</span> <span>$9.74</span></div>
+                <div class="detail-item"><span>🥤 Horchata</span> <span>$2.25</span></div>
+                <div class="detail-item"><span>🎂 Cumpleañera</span> <span>$1.50</span></div>
+                <div class="detail-item"><span>🪙 Propina</span> <span>$1.24</span></div>
+            </div>
+        </div>
+
+        <div class="row" onclick="toggleRow(this)">
+            <div class="row-header">
+                <div class="name-wrapper"><span class="arrow">▼</span> Lissbeth</div>
+                <span class="price-tag">$12.98</span>
+            </div>
+            <div class="details">
+                <div class="detail-item"><span>🍴 Embarazado Pastor</span> <span>$7.99</span></div>
+                <div class="detail-item"><span>🥤 Coca</span> <span>$2.25</span></div>
+                <div class="detail-item"><span>🎂 Cumpleañera</span> <span>$1.50</span></div>
+                <div class="detail-item"><span>🪙 Propina</span> <span>$1.24</span></div>
+            </div>
+        </div>
+
+        <div class="footer-total">
+            <span>TOTAL</span>
+            <span>$109.06</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleRow(element) {
+        // Cierra los otros por elegancia
+        document.querySelectorAll('.row').forEach(r => {
+            if (r !== element) r.classList.remove('active');
+        });
+        // Abre el seleccionado
+        element.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>
